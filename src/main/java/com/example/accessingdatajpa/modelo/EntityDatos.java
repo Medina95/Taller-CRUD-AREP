@@ -1,4 +1,4 @@
-package com.example.accessingdatajpa;
+package com.example.accessingdatajpa.modelo;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,13 +14,13 @@ public class EntityDatos {
 
     private Long id;
 
-    private  String addres;
+    private  String address;
     private Integer size;
     private  Integer price;
     private   String description;
-    protected EntityDatos() {}
-    public EntityDatos(String addres,Integer size,Integer price ,String description) {
-        this.addres=addres;
+    public EntityDatos() {}
+    public EntityDatos(String address,Integer size,Integer price ,String description) {
+        this.address =address;
         this.size=size;
         this.price=price;
         this.description=description;
@@ -34,12 +34,12 @@ public class EntityDatos {
         this.id = id;
     }
 
-    public String getAddres() {
-        return addres;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddres(String addres) {
-        this.addres = addres;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Integer getSize() {

@@ -1,7 +1,8 @@
-package com.example.accessingdatajpa;
+package com.example.accessingdatajpa.repository;
 
 import java.util.List;
 
+import com.example.accessingdatajpa.modelo.Customer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
