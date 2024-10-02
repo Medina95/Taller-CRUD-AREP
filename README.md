@@ -1,6 +1,6 @@
 # TALLER  SISTEMA CRUD PARA GESTIONAR PROPIEDADES
 
-En este taller se elaboró una aplicación para gestionar propiedades inmobiliarias implementando un sistema CRUD para crear, listar, actualizar y eliminar dichas "entidades". Para su despliegue, se configuraron dos instancias EC2 en AWS. La primera instancia aloja el componente de Spring, que incluye tanto el backend como el frontend. Esta instancia se comunica con la segunda, donde está implementada la base de datos MySQL, logrando así una arquitectura distribuida. Adicionalmente, se realizaron las validaciones de campos y los respectivos filtros por precio, tamaño y dirección.   
+En este taller se elaboró una aplicación para gestionar propiedades inmobiliarias implementando un sistema CRUD para crear, listar, actualizar y eliminar dichas "entidades". Para su despliegue, se configuraron dos instancias EC2 en AWS. La primera instancia aloja el componente de Spring, que incluye tanto el backend como el frontend. Esta instancia se comunica con la segunda, donde está implementada la base de datos MySQL, logrando así una arquitectura distribuida. Adicionalmente, se realizaron las validaciones de campos, los respectivos filtros por precio, tamaño y dirección y los mensajes para el usuario de exito o error de las operaciones del CRUD.   
 
 ## Arquitectura
 
