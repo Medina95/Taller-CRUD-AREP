@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestión de Entidades</title>
+    <title>Gestión de propiedades Inmobiliarias</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
@@ -25,7 +25,7 @@
 
 <div class="form-container">
 
-    <h2 class="text-center">Listar Entidades</h2>
+    <h2 class="text-center">Listar Propiedades Inmobiliarias</h2>
 
     <table class="table table-bordered" id="entityTable">
         <thead class="thead-light">
@@ -42,7 +42,7 @@
         <!-- Las filas se llenarán aquí con JavaScript -->
         </tbody>
     </table>
-    <h2 class="mt-4">Filtrar Entidades</h2>
+    <h2 class="mt-4">Filtrar Propiedades Inmobiliarias</h2>
     <div class="form-group">
         <label for="filterCriteria">Filtrar por:</label>
         <select id="filterCriteria" class="form-control">
@@ -57,7 +57,7 @@
     <button class="btn btn-secondary btn-block" onclick="filtrarEntidades()">Filtrar</button>
 
 
-    <h2 class="mt-4">Agregar Entidad</h2>
+    <h2 class="mt-4">Agregar Propiedades Inmobiliarias</h2>
     <form id="addEntityForm" action="/agregar" method="post" onsubmit="agregarEntidad(event)">
         <div class="form-group">
             <input type="text" name="address" class="form-control" placeholder="Dirección" required>
@@ -74,7 +74,7 @@
         <button type="submit" class="btn btn-primary btn-block">Agregar</button>
     </form>
 
-    <h2 class="mt-4">Actualizar Entidad</h2>
+    <h2 class="mt-4">Actualizar Propiedades Inmobiliarias</h2>
     <form id="updateEntityForm" onsubmit="actualizarEntidad(event)">
         <div class="form-group row">
             <label for="updateId" class="col-sm-3 col-form-label">ID</label>
@@ -153,7 +153,25 @@ function filtrarEntidades() {
         .then(data => {
             const tableBody = document.querySelector('#entityTable tbody');
             tableBody.innerHTML = '';
-            data.forEach(entidad => {
+
+            // Filtrar las entidades en el lado del cliente
+            const filteredEntities = data.filter(entidad => {
+                // Si el valor está vacío, mostrar todas las entidades
+                if (!value) {
+                    return true; // Siempre devuelve true para que todas las entidades sean visibles
+                }
+
+                // Compara el criterio seleccionado con el valor ingresado
+                if (criteria === 'price' || criteria === 'size') {
+                    return entidad[criteria].toString() === value; // Comparación exacta para precio y tamaño
+                } else if (criteria === 'address') {
+                    return entidad[criteria] === value; // Comparación exacta para dirección
+                }
+                return false; // No se encuentra coincidencia si no coincide con ningún criterio
+            });
+
+            // Mostrar las entidades filtradas en la tabla
+            filteredEntities.forEach(entidad => {
                 const row = `<tr>
                     <td>${entidad.id}</td>
                     <td>${entidad.address}</td>
@@ -170,9 +188,10 @@ function filtrarEntidades() {
         })
         .catch(error => {
             console.error('Error:', error);
-            mostrarMensaje('Error al filtrar las entidades.', false);
+            mostrarMensaje('Error al filtrar las propiedades inmobiliarias', false);
         });
 }
+
 
 
     function agregarEntidad(event) {
@@ -183,9 +202,9 @@ function filtrarEntidades() {
                 if (response.ok) {
                     obtenerEntidades();
                     event.target.reset();
-                    mostrarMensaje('Entidad agregada con éxito!', true);
+                    mostrarMensaje('propiedades inmobiliaria agregada con éxito!', true);
                 } else {
-                    mostrarMensaje('Error al agregar la entidad.', false);
+                    mostrarMensaje('Error al agregar la propiedades inmobiliaria.', false);
                 }
             });
     }
@@ -241,9 +260,9 @@ function filtrarEntidades() {
                 obtenerEntidades();
                 event.target.reset();
                 document.getElementById('updateId').value = '';
-                mostrarMensaje('Entidad actualizada con éxito!', true);
+                mostrarMensaje('propiedades inmobiliaria actualizada con éxito!', true);
             } else {
-                mostrarMensaje('Error al actualizar la entidad.', false);
+                mostrarMensaje('Error al actualizar la propiedades inmobiliaria, seleccione una propiedad.', false);
             }
         });
     }
@@ -253,9 +272,9 @@ function filtrarEntidades() {
             .then(response => {
                 if (response.ok) {
                     obtenerEntidades();
-                    mostrarMensaje('Entidad eliminada con éxito!', true);
+                    mostrarMensaje('propiedades inmobiliaria eliminada con éxito!', true);
                 } else {
-                    mostrarMensaje('Error al eliminar la entidad.', false);
+                    mostrarMensaje('Error al eliminar la propiedades inmobiliaria.', false);
                 }
             });
     }
