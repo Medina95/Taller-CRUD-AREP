@@ -32,7 +32,7 @@ Para ejecutar este proyecto, necesitarás tener instalado:
 5. **IMPORTANTE**: 
    - En application.properties tiene que cambiar el usuario en ***spring.datasource.username*** por root o por un usuario que tenga predefinido.
    - En **spring.datasource.password** cambié la contraseña por su contraseña de base de datos.
-   - Finalmente cambie su IP en **spring.datasource.url** por localhost o una específica como las de AWS.
+   - Finalmente, cambie su IP en **spring.datasource.url** por localhost o una específica como las de AWS y no olvide que la base se llama arep. 
    - ![pruebas](ReadmeImages/importante.png)
 
 ## Deployment
@@ -42,7 +42,7 @@ Para ejecutar este proyecto, necesitarás tener instalado:
    ```bash
    mvn clean install
    ```
-3.  Compila el proyecto que contiene el método MAIN: JpaDemoApplication o ejecuta desde la terminal
+3.  Compila el proyecto que contiene el método MAIN: AccessingDataJpaApplication o ejecuta desde la terminal
 
    ```bash
    mvn spring-boot:run
